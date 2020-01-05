@@ -62,7 +62,7 @@ class _InputDataPageState extends State<InputDataPage> {
 }
 
 class CustomCard extends StatelessWidget {
-  CustomCard({@required this.cor}); //named parameter of type color
+  CustomCard({@required this.cor}); //named parameter of type color as @required 
 
   final Color cor;                                                              //making it immutable
 
