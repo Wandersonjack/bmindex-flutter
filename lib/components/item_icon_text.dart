@@ -1,9 +1,6 @@
+import 'package:bmindex_app/utils/constants.dart';
 import 'package:flutter/material.dart';
-//in the cases you need to define alternative value to text style for example, use const to make it immutable at the time of build and don't forget to instantiate it as a value
-const labelTextStyle =   TextStyle(
-  color: Colors.white,
-  fontSize: 18.0,
-);
+
 
 class ItemIconText extends StatelessWidget {
   ItemIconText({this.icone, this.label});                                       /*applying the properties as params as not required and now you should use the named param inside of the object declared in the input page*/
@@ -25,7 +22,7 @@ class ItemIconText extends StatelessWidget {
         ),
         Text(
           label,
-          style: labelTextStyle,
+          style: kLabelTextStyle,
         ),
       ],
     );

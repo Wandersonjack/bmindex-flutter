@@ -1,4 +1,4 @@
-import 'package:bmindex_app/pages/input_page.dart';
+import 'package:bmindex_app/screens/input_page.dart';
 import 'package:flutter/material.dart';
 
 
