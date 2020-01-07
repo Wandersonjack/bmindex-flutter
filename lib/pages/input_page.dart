@@ -8,39 +8,20 @@ const inactiveColor = Color(0xFF111328);
 const pinkColor = Color(0xFFEB1455);
 const bottomBarHeight = 80.0;
 
+//Enumeration
+enum Gender {
+  male,
+  female
+}
+
 class InputDataPage extends StatefulWidget {
   @override
   _InputDataPageState createState() => _InputDataPageState();
 }
 
 class _InputDataPageState extends State<InputDataPage> {
-  //applying gesture detectors and state for the color change
-  Color maleColor = inactiveColor;//creating initial instance for the colors as inactive
-  Color femaleColor = inactiveColor;//use it inside of the cor of the widget
+  Gender selectedGender;                                                        //property of type @Gender
 
-  //verifying if the tapped widget is male = 1 or female = 2
-  void updateColor(int gender){
-    //male card that was tapped
-    if(gender == 1){
-      //checking if the color is inactive and toggle it with active color
-      if(maleColor == inactiveColor){
-        maleColor = activeColor;
-        femaleColor = inactiveColor;
-      }else{
-        maleColor = inactiveColor;
-      }
-    }else{//it's female
-      //checking the color
-      if(femaleColor == inactiveColor){
-        femaleColor = activeColor;
-        maleColor = inactiveColor;
-      }else{
-        femaleColor = inactiveColor;
-      }
-    }
-
-  }
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,14 +34,15 @@ class _InputDataPageState extends State<InputDataPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: GestureDetector(                                       //wrapping the widget with a gesture detector use onTap and setState to change the color
-                    onTap: (){
+                  child: GestureDetector(
+                    //wrapping the widget with a gesture detector use onTap and setState to change the color
+                    onTap: () {
                       setState(() {
-                        updateColor(1);
+                        selectedGender = Gender.male;                           //instantiating the gender based on the widget
                       });
                     },
                     child: CustomCard(
-                      cor: maleColor,
+                      cor: selectedGender == Gender.male ? activeColor: inactiveColor,//  ternary operator
                       cardChild: ItemIconText(
                         icone: FontAwesomeIcons.mars,
                         label: 'MALE',
@@ -70,13 +52,13 @@ class _InputDataPageState extends State<InputDataPage> {
                 ),
                 Expanded(
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       setState(() {
-                        updateColor(2);
+                        selectedGender = Gender.female;
                       });
                     },
                     child: CustomCard(
-                      cor: femaleColor,
+                      cor: selectedGender == Gender.female ? activeColor : inactiveColor,
                       cardChild: ItemIconText(
                         icone: FontAwesomeIcons.venus,
                         label: 'FEMALE',
