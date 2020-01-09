@@ -1,5 +1,7 @@
-import 'package:bmindex_app/screens/input_page.dart';
+import 'package:bmindex_app/screens/input_screen.dart';
+import 'package:bmindex_app/screens/result_screen.dart';
 import 'package:flutter/material.dart';
+
 
 
 void main() => runApp(MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xFFEB1355),
         scaffoldBackgroundColor: Color(0xFF0A0E33),
       ),
-      home: InputDataPage(),
+      home: InputDataScreen(),
     );
   }
 }
