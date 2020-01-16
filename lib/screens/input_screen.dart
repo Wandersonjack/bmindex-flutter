@@ -55,6 +55,7 @@ class _InputDataScreenState extends State<InputDataScreen> {
                           selectedGender = Gender.male;
                         });
                       },
+                      //TODO: IMPLEMENT THE ON PRESSED STATE AND CHANGE IT TO STATE OF SHAPES INSTEAD OF COLORS
                       cor: selectedGender == Gender.male
                           ? kActiveColor
                           : kInactiveColor,

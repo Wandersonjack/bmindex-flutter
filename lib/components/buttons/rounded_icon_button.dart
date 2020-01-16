@@ -1,3 +1,4 @@
+import 'package:bmindex_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,8 +19,9 @@ class RoundedIconButton extends StatelessWidget {
         width: 56.0,
         height: 56.0,
       ),
+
       shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
+      fillColor: kInactiveColor,
     );
   }
 }
