@@ -4,6 +4,7 @@ import 'package:bmindex_app/components/custom_card.dart';
 import 'package:bmindex_app/components/item_icon_text.dart';
 import 'package:bmindex_app/screens/result_screen.dart';
 import 'package:bmindex_app/utils/constants.dart';
+import 'package:bmindex_app/utils/constants.dart' as prefix0;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmindex_app/brain/calculator_brain.dart';
@@ -22,227 +23,241 @@ class _InputDataScreenState extends State<InputDataScreen> {
   int weight = 60;
   int age = 18;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('BMI Calculator'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: CustomCard(
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    },
-                    cor: selectedGender == Gender.male
-                        ? kActiveColor
-                        : kInactiveColor,
-                    cardChild: ItemIconText(
-                      icone: FontAwesomeIcons.mars,
-                      label: 'MALE',
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: CustomCard(
-                    onPress: () {
-                      setState(() {
-                        selectedGender = Gender.female;
-                      });
-                    },
-                    cor: selectedGender == Gender.female
-                        ? kActiveColor
-                        : kInactiveColor,
-                    cardChild: ItemIconText(
-                      icone: FontAwesomeIcons.venus,
-                      label: 'FEMALE',
-                    ),
-                  ),
-                ),
-              ],
-            ),
+      body: Container(
+        padding: EdgeInsets.only(top: 64.0),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color(0xFF444A6D),
+              Color(0xFF2D324D),
+            ],
           ),
-          Expanded(
-            child: CustomCard(
-              cor: kActiveColor,
-              cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(left: 16.0),
+              child: Text('BMI Calculator', style: kBoldTitleStyle,),
+            ),
+            Expanded(
+              child: Row(
                 children: <Widget>[
-                  Text(
-                    'HEIGHT',
-                    style: kLabelTextStyle,
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                    textBaseline: TextBaseline.alphabetic,
-                    children: <Widget>[
-                      Text(
-                        height.toString(),
-                        style: kBoldTextStyle,
-                      ),
-                      SizedBox(width: 4.0),
-                      Text(
-                        'cm',
-                        style: kLabelTextStyle,
-                      ),
-                    ],
-                  ),
-                  SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: kWhiteColor,
-                      inactiveTrackColor: kGreyColor,
-                      thumbColor: kPinkColor,
-                      overlayColor: kPinkWithOpacity,
-                      thumbShape:
-                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                      overlayShape:
-                          RoundSliderOverlayShape(overlayRadius: 30.0),
-                    ),
-                    child: Slider(
-                      value: height.toDouble(),
-                      min: 120,
-                      max: 220,
-                      onChanged: (double newHeightValue) {
+                  Expanded(
+                    child: CustomCard(
+                      onPress: () {
                         setState(() {
-                          height = newHeightValue.round();
+                          selectedGender = Gender.male;
                         });
                       },
+                      cor: selectedGender == Gender.male
+                          ? kActiveColor
+                          : kInactiveColor,
+                      cardChild: ItemIconText(
+                        icone: FontAwesomeIcons.mars,
+                        label: 'MALE',
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: CustomCard(
+                      onPress: () {
+                        setState(() {
+                          selectedGender = Gender.female;
+                        });
+                      },
+                      cor: selectedGender == Gender.female
+                          ? kActiveColor
+                          : kInactiveColor,
+                      cardChild: ItemIconText(
+                        icone: FontAwesomeIcons.venus,
+                        label: 'FEMALE',
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          Expanded(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: CustomCard(
-                    cor: kActiveColor,
-                    cardChild: Column(
+            Expanded(
+              child: CustomCard(
+                cor: kActiveColor,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'HEIGHT',
+                      style: kLabelTextStyle,
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
                       children: <Widget>[
                         Text(
-                          'WEIGHT',
-                          style: kLabelTextStyle,
-                        ),
-                        SizedBox(
-                          height: 8.0,
-                        ),
-                        Text(
-                          weight.toString(),
+                          height.toString(),
                           style: kBoldTextStyle,
                         ),
-                        SizedBox(
-                          height: 8.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RoundedIconButton(
-                              icon: FontAwesomeIcons.minus,
-                              onPress: () {
-                                setState(() {
-                                  weight--;
-                                });
-                              },
-                            ),
-                            SizedBox(
-                              width: 16.0,
-                            ),
-                            RoundedIconButton(
-                              icon: FontAwesomeIcons.plus,
-                              onPress: () {
-                                setState(() {
-                                  weight++;
-                                });
-                              },
-                            ),
-                          ],
+                        SizedBox(width: 4.0),
+                        Text(
+                          'cm',
+                          style: kLabelTextStyle,
                         ),
                       ],
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: CustomCard(
-                    cor: kActiveColor,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'AGE',
-                          style: kLabelTextStyle,
-                        ),
-                        SizedBox(
-                          height: 8.0,
-                        ),
-                        Text(
-                          age.toString(),
-                          style: kBoldTextStyle,
-                        ),
-                        SizedBox(
-                          height: 16.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            RoundedIconButton(
-                              icon: FontAwesomeIcons.minus,
-                              onPress: () {
-                                setState(() {
-                                  age--;
-                                });
-                              },
-                            ),
-                            SizedBox(
-                              width: 8.0,
-                            ),
-                            RoundedIconButton(
-                              icon: FontAwesomeIcons.plus,
-                              onPress: () {
-                                setState(() {
-                                  age++;
-                                });
-                              },
-                            )
-                          ],
-                        ),
-                      ],
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        activeTrackColor: kWhiteColor,
+                        inactiveTrackColor: kGreyColor,
+                        thumbColor: kPinkColor,
+                        overlayColor: kPinkWithOpacity,
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
+                      ),
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: 120,
+                        max: 220,
+                        onChanged: (double newHeightValue) {
+                          setState(() {
+                            height = newHeightValue.round();
+                          });
+                        },
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-          BottomButton(
-            onTap: () {
-              CalculatorBrain calc = CalculatorBrain(height: height, weight: weight);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ResultsScreen(
-                      bmiResults: calc.calculateBMI(),
-                      resultText: calc.getResult(),
-                      interpretation: calc.getResultInterpretation(),
+            Expanded(
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: CustomCard(
+                      cor: kActiveColor,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'WEIGHT',
+                            style: kLabelTextStyle,
+                          ),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          Text(
+                            weight.toString(),
+                            style: kBoldTextStyle,
+                          ),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundedIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPress: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 16.0,
+                              ),
+                              RoundedIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPress: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ));
-            },
-            buttonText: 'CALCULATE',
-          ),
-        ],
+                  ),
+                  Expanded(
+                    child: CustomCard(
+                      cor: kActiveColor,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'AGE',
+                            style: kLabelTextStyle,
+                          ),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kBoldTextStyle,
+                          ),
+                          SizedBox(
+                            height: 16.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundedIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPress: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: 8.0,
+                              ),
+                              RoundedIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPress: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            BottomButton(
+              onTap: () {
+                CalculatorBrain calc =
+                    CalculatorBrain(height: height, weight: weight);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResultsScreen(
+                        bmiResults: calc.calculateBMI(),
+                        resultText: calc.getResult(),
+                        interpretation: calc.getResultInterpretation(),
+                      ),
+                    ));
+              },
+              buttonText: 'CALCULATE',
+            ),
+          ],
+        ),
       ),
     );
   }

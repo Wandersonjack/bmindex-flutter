@@ -18,6 +18,16 @@ class ResultsScreen extends StatelessWidget {
         title: Text('Results'),
       ),
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color(0xFF444A6D),
+              Color(0xFF2D324D),
+            ],
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
