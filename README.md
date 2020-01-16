@@ -1,6 +1,8 @@
 # bmindex_app
 
-Body mass index calculator app, focus the studies 
+Body mass index calculator app,developed during the london app brewery- Flutter development bootcamp
+
+Original design by Ruben Vaalt [BMI Design](https://dribbble.com/shots/4585382-Simple-BMI-Calculator)
 
 ## Getting Started
 
